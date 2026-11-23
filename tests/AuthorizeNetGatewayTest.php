@@ -10,7 +10,7 @@ final class AuthorizeNetGatewayTest extends TestCase
 {
     public function test_it_charges_accept_js_opaque_data(): void
     {
-        Http::fake(['apitest.authorize.net/xml/v1/request.api' => Http::response(['transactionResponse' => ['transId' => '123']])]);
+        Http::fake(['https://apitest.authorize.net/*' => Http::response(['transactionResponse' => ['transId' => '123']])]);
 
         $result = (new AuthorizeNetGateway('login', 'key'))->chargeOpaqueData('49.99', 'COMMON.ACCEPT.INAPP.PAYMENT', 'opaque-token');
 
